@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71d118003f884943bacb93c232a71c7c" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="OHD_SystemModel.Category" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Cours" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Email" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.ExtracurricularActivity" Width="1.5" PointX="6" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.ExtracurricularRegistration" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Feedback" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Registration" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.RequestAttachment" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.RequestRespon" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Request" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.Role" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OHD_SystemModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Requests__Catego__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Registrat__Cours__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Emails__UserID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Extracurr__Activ__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Extracurr__UserI__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Feedback__Reques__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Feedback__UserID__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Registrat__UserI__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__RequestAt__Reque__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__RequestRe__Reque__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Requests__Assign__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Requests__UserID__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="OHD_SystemModel.FK__Users__RoleID__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

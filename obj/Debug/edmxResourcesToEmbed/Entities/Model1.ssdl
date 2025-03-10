@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OHD_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Credits" Type="int" Nullable="false" />
+    <Property Name="Department" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="EmailID" />
+    </Key>
+    <Property Name="EmailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ToEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="SentAt" Type="datetime" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ExtracurricularActivities">
+    <Key>
+      <PropertyRef Name="ActivityID" />
+    </Key>
+    <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ActivityDate" Type="datetime" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="ExtracurricularRegistrations">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivityID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedbackID" />
+    </Key>
+    <Property Name="FeedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Registrations">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="RequestAttachments">
+    <Key>
+      <PropertyRef Name="AttachmentID" />
+    </Key>
+    <Property Name="AttachmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="RequestRespon">
+    <Key>
+      <PropertyRef Name="ResponID" />
+    </Key>
+    <Property Name="ResponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestID" Type="int" Nullable="false" />
+    <Property Name="ResponseText" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ResponseDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="AssignedTo" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Emails__UserID__4D94879B">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Extracurr__Activ__5BE2A6F2">
+    <End Role="ExtracurricularActivities" Type="Self.ExtracurricularActivities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ExtracurricularRegistrations" Type="Self.ExtracurricularRegistrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExtracurricularActivities">
+        <PropertyRef Name="ActivityID" />
+      </Principal>
+      <Dependent Role="ExtracurricularRegistrations">
+        <PropertyRef Name="ActivityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Extracurr__UserI__5CD6CB2B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ExtracurricularRegistrations" Type="Self.ExtracurricularRegistrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ExtracurricularRegistrations">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__Reques__49C3F6B7">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__UserID__4AB81AF0">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__Cours__5629CD9C">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Registrations" Type="Self.Registrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Registrations">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__UserI__5535A963">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Registrations" Type="Self.Registrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Registrations">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RequestAt__Reque__45F365D3">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="RequestAttachments" Type="Self.RequestAttachments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="RequestAttachments">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RequestRe__Reque__5070F446">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="RequestRespon" Type="Self.RequestRespon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="RequestRespon">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Requests__Assign__4316F928">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="AssignedTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Requests__Catego__4222D4EF">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Requests__UserID__412EB0B6">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__RoleID__3B75D760">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OHD_SystemModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExtracurricularActivities" EntityType="Self.ExtracurricularActivities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExtracurricularRegistrations" EntityType="Self.ExtracurricularRegistrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registrations" EntityType="Self.Registrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestAttachments" EntityType="Self.RequestAttachments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestRespon" EntityType="Self.RequestRespon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Emails__UserID__4D94879B" Association="Self.FK__Emails__UserID__4D94879B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Emails" EntitySet="Emails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Extracurr__Activ__5BE2A6F2" Association="Self.FK__Extracurr__Activ__5BE2A6F2">
+      <End Role="ExtracurricularActivities" EntitySet="ExtracurricularActivities" />
+      <End Role="ExtracurricularRegistrations" EntitySet="ExtracurricularRegistrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Extracurr__UserI__5CD6CB2B" Association="Self.FK__Extracurr__UserI__5CD6CB2B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ExtracurricularRegistrations" EntitySet="ExtracurricularRegistrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__Reques__49C3F6B7" Association="Self.FK__Feedback__Reques__49C3F6B7">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="Feedback" EntitySet="Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__UserID__4AB81AF0" Association="Self.FK__Feedback__UserID__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Feedback" EntitySet="Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__Cours__5629CD9C" Association="Self.FK__Registrat__Cours__5629CD9C">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Registrations" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__UserI__5535A963" Association="Self.FK__Registrat__UserI__5535A963">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Registrations" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RequestAt__Reque__45F365D3" Association="Self.FK__RequestAt__Reque__45F365D3">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="RequestAttachments" EntitySet="RequestAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RequestRe__Reque__5070F446" Association="Self.FK__RequestRe__Reque__5070F446">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="RequestRespon" EntitySet="RequestRespon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Requests__Assign__4316F928" Association="Self.FK__Requests__Assign__4316F928">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Requests__Catego__4222D4EF" Association="Self.FK__Requests__Catego__4222D4EF">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Requests__UserID__412EB0B6" Association="Self.FK__Requests__UserID__412EB0B6">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__RoleID__3B75D760" Association="Self.FK__Users__RoleID__3B75D760">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

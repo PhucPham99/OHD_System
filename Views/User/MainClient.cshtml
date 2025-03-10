@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "MainClient";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h2>MainClient</h2>
+<div class="jumbotron text-center py-5">
+    <h1 class="display-4 text-primary">Welcome to the Online Help Desk</h1>
+    <p class="lead">
+        Your one-stop solution for managing support requests, course registrations, and extracurricular activities.
+    </p>
+    <hr class="my-4">
+    <p>
+        Easily submit support requests and track their progress. Register for courses and join extracurricular activities with just a few clicks.
+    </p>
+    <a class="btn btn-primary btn-lg" href="@Url.Action("Submit", "Request")" role="button">Get Started</a>
+</div>
+
+<!-- Hero Section -->
+<div class="jumbotron jumbotron-fluid text-white" style="background: url('~/Content/Images/helpdesk-bg.jpg') no-repeat center center; background-size: cover;">
+    <div class="container py-5">
+        <h1 class="display-4">Online Help Desk</h1>
+        <p class="lead">Your one-stop solution for all your support needs.</p>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("Submit", "Request")">Submit a Request</a>
+    </div>
+</div>
+
+<!-- Latest Support Requests Section -->
+<div class="container my-5">
+    <h2 class="mb-4">Latest Support Requests</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+       
+    </table>
+</div>
+
+<!-- FAQ Section -->
+<div class="container my-5">
+    <h2 class="mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        @*@if (Model.FAQs != null && Model.FAQs.Any())
+        {
+            int index = 0;
+            foreach (var faq in Model.FAQs)
+            {
+                var collapseId = "collapse" + index;
+                var headingId = "heading" + index;
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="@headingId">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                            @faq.Question
+                        </button>
+                    </h2>
+                    <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            @faq.Answer
+                        </div>
+                    </div>
+                </div>
+                index++;
+            }
+        }
+        else
+        {
+            <p>No FAQs available.</p>
+        }*@
+    </div>
+</div>
+
+
+
