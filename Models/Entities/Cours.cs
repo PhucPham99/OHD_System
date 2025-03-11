@@ -28,6 +28,7 @@ namespace OHD_System.Models.Entities
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> endDateAt { get; set; }
         public Nullable<int> participants { get; set; }
+        public Nullable<int> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registration> Registrations { get; set; }

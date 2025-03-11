@@ -21,6 +21,8 @@
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Cours__6B24EA82" FromRole="Courses" ToRole="Registrations" />
     <Property Name="endDateAt" Type="DateTime" Precision="3" />
+    <Property Name="participants" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
   </EntityType>
   <EntityType Name="Email">
     <Key>

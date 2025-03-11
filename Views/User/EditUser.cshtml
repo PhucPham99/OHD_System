@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "NewUser";
+    ViewBag.Title = "EditUser";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 @section subHeader{
 }
 <div class="page-heading">
-    <h1 class="page-title">New User</h1>
+    <h1 class="page-title">Edit User</h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="row">
@@ -23,63 +24,68 @@
                     </div>
                 </div>
                 <div class="ibox-body">
-                    <form action="/user/createUser" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Full Name</label>
-                                <input class="form-control" type="text" name="FullName" placeholder="FullName" value="">
+                    @if (ViewBag.UserEdit != null)
+                    {
+                        var item1 = (OHD_System.Models.Entities.User)ViewBag.UserEdit;
+                        <form action="/user/changeUser" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Full Name</label>
+                                    <input class="form-control" type="text" name="FullName" placeholder="ClassName" value="@(item1 != null ? item1.FullName : "")">
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" type="text" name="Email" placeholder="EmaIL" value="@(item1 != null ? item1.Email : "")">
+                                </div>
                             </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Email</label>
-                                <input class="form-control" type="text" name="Email" placeholder="Email" value="">
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label>PhoneNumber</label>
+                                    <input class="form-control" type="text" name="PhoneNumber" placeholder="PhoneNumber" value="@(item1 != null ? item1.PhoneNumber : "")">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>PassWord</label>
-                                <input class="form-control" type="password" name="PasswordHash" placeholder="PassWord" value="">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Created Date</label>
+                                    <input class="form-control" type="date" name="CreatedAt" value="@(item1.CreatedAt != null ? ((DateTime)item1.CreatedAt).ToString("yyyy-MM-dd") : "")">
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Updated Date</label>
+                                    <input class="form-control" type="date" name="UpdatedAt" value="@(item1.UpdatedAt != null ? ((DateTime)item1.UpdatedAt).ToString("yyyy-MM-dd") : ""))">
+                                </div>
                             </div>
-                            <div class="col-sm-6 form-group">
-                                <label>PhoneNumber</label>
-                                <input class="form-control" type="text" name="PhoneNumber" placeholder="PhoneNumber" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Created Date</label>
-                                <input class="form-control" type="date" name="CreatedAt" value="">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Updated Date</label>
-                                <input class="form-control" type="date" name="UpdatedAt" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Select Trainer</label>
-                                <select class="form-control" name="RoleID">
-                                    <option selected>select Type</option>
-                                    @if (ViewBag.listRole != null)
-                                    {
-                                        List<OHD_System.Models.Entities.Role> lsTrainer = (List<OHD_System.Models.Entities.Role>)ViewBag.listRole;
-                                        foreach (var item in lsTrainer)
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label>Select Trainer</label>
+                                    <select class="form-control" name="RoleID">
+                                        <option selected>select Type</option>
+                                        @if (ViewBag.listRole != null)
                                         {
-                                            <option value="@item.RoleID">@item.RoleName</option>
+                                            List<OHD_System.Models.Entities.Role> lsTrainer = (List<OHD_System.Models.Entities.Role>)ViewBag.listRole;
+                                            foreach (var item in lsTrainer)
+                                            {
+                                                <option value="@item.RoleID" @(item.RoleID.ToString() == item1.RoleID.ToString() ? "selected" : "")>@item.RoleName</option>
+                                            }
                                         }
-                                    }
-                                </select>
-                                <span style="color: red;text-align:left">@(Session["RegexTrainer"]!=null?Session["RegexTrainer"]:"")</span>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="ui-checkbox">Status</label>
-                            <input type="checkbox" name="Status" alt="Active or deactive" checked>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-default" type="submit">Submit</button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label class="ui-checkbox">Status</label>
+                                @if (item1.Status == 1)
+                                {
+                                    <input type="checkbox" name="Status" alt="Active or deactive" checked>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Status" alt="Active or deactive">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    }
                 </div>
             </div>
         </div>
@@ -200,4 +206,6 @@
     </div>
 
 }
+
+
 

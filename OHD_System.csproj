@@ -144,6 +144,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\CourseController.cs" />
     <Compile Include="Controllers\Admin\DasboardController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3778,6 +3779,9 @@
     <Content Include="Views\Dasboard\Index.cshtml" />
     <Content Include="Views\User\NewUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\Course\NewCourse.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

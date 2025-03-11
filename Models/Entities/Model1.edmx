@@ -25,6 +25,7 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="endDateAt" Type="datetime" />
           <Property Name="participants" Type="int" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="Emails">
           <Key>
@@ -405,6 +406,7 @@
           <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Cours__6B24EA82" FromRole="Courses" ToRole="Registrations" />
           <Property Name="endDateAt" Type="DateTime" Precision="3" />
           <Property Name="participants" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
@@ -801,6 +803,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="OHD_SystemModel.Cours">
               <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="participants" ColumnName="participants" />
                 <ScalarProperty Name="endDateAt" ColumnName="endDateAt" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />

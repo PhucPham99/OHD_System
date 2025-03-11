@@ -19,6 +19,8 @@
     <Property Name="Department" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="endDateAt" Type="datetime" />
+    <Property Name="participants" Type="int" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="Emails">
     <Key>

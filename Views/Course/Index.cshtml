@@ -7,11 +7,11 @@
 @section subHeader{
     <link href="@Url.Content("~/content/Admin/assets/vendors/DataTables/datatables.min.css")" rel="stylesheet" />
 }
-@if (ViewBag.ListUser != null)
+@if (ViewBag.listCourse != null)
 {
-    var ls = (List<OHD_System.Models.ModelView.UserView>)ViewBag.ListUser;
+    var ls = (List<OHD_System.Models.Entities.Cours>)ViewBag.listCourse;
     <div class="page-heading">
-        <h1 class="page-title">User List</h1>
+        <h1 class="page-title">Class List</h1>
     </div>
     <div class="page-content fade-in-up">
         <div class="ibox">
@@ -46,12 +46,13 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>FullName</th>
-                                    <th>Email</th>
-                                    <th>PhoneNumber</th>
-                                    <th>RoleName</th>
+                                    <th>CourseName</th>
+                                    <th>Description</th>
+                                    <th>Credits</th>
+                                    <th>Department</th>
+                                    <th>participants</th>
                                     <th>CreatedAt</th>
-                                    <th>UpdatedAt</th>
+                                    <th>endDateAt</th>
                                     <th>Status</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
@@ -60,12 +61,13 @@
                             <tfoot>
                                 <tr>
                                     <th>No.</th>
-                                    <th>FullName</th>
-                                    <th>Email</th>
-                                    <th>PhoneNumber</th>
-                                    <th>RoleName</th>
+                                    <th>CourseName</th>
+                                    <th>Description</th>
+                                    <th>Credits</th>
+                                    <th>Department</th>
+                                    <th>participants</th>
                                     <th>CreatedAt</th>
-                                    <th>UpdatedAt</th>
+                                    <th>endDateAt</th>
                                     <th>Status</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
@@ -77,12 +79,13 @@
                                 {
                                     <tr>
                                         <td>@i</td>
-                                        <td>@item.FullName</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.PhoneNumber</td>
-                                        <td>@item.RoleName</td>
-                                        <td>@(item.CreatedAt.ToString("yyyy-MM-dd") ?? "")</td>
-                                        <td>@(item.UpdatedAt.ToString("yyyy-MM-dd") ?? "")</td>
+                                        <td>@item.CourseName</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Credits</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.participants</td>
+                                        <td>@(item.CreatedAt?.ToString("yyyy-MM-dd") ?? "")</td>
+                                        <td>@(item.endDateAt?.ToString("yyyy-MM-dd") ?? "")</td>
                                         <td>
                                             @if (item.Status == 1)
                                             {
@@ -94,11 +97,11 @@
                                             }
                                         </td>
                                         <td>
-                                            <a href="DeleteUser?id=@item.UserID"><img src="@Url.Content("~/content/Admin/images/trash.png")" alt="delete type" /></a>
+                                            <a href="DeleteCourse?id=@item.CourseID"><img src="@Url.Content("~/content/Admin/images/trash.png")" alt="delete type" /></a>
                                         </td>
 
                                         <td>
-                                            <a href="EditUser?id=@item.UserID"><img src="@Url.Content("~/content/Admin/images/edit_icon.png")" alt="edit type" /></a>
+                                            <a href="EditCourse?id=@item.CourseID"><img src="@Url.Content("~/content/Admin/images/edit_icon.png")" alt="edit type" /></a>
                                         </td>
                                     </tr>
                                     i++;
@@ -290,4 +293,5 @@
     }
     </script>
 }
+
 

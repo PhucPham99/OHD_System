@@ -94,7 +94,6 @@ namespace OHD_System.Models.Repositories
                     rs.CreatedAt = updateUser.CreatedAt;
                     rs.UpdatedAt = updateUser.UpdatedAt;
                     rs.RoleID = updateUser.RoleID;
-                    rs.PasswordHash = updateUser.PasswordHash;
                     en.SaveChanges();
                     return "Update success";
                 }
@@ -147,6 +146,27 @@ namespace OHD_System.Models.Repositories
                          }).ToList();
             totalRecords = query.Count();
             return query.OrderBy(p => p.UserID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        public User getUserByID(int id)
+        {
+            var us = new User();
+            try
+            {
+                using(var en = new Entities.OHD_SystemEntities())
+                {
+                    var rs = en.Users.Where(u => u.UserID == id).FirstOrDefault();
+                    if (rs != null)
+                    {
+                        us = rs;
+                        return us;
+                    }
+                }
+            }
+            catch (EntityException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return us;
         }
     }
 }

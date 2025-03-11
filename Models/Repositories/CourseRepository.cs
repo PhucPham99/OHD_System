@@ -77,6 +77,7 @@ namespace OHD_System.Models.Repositories
                         rs.Credits = updateCourse.Credits;
                         rs.CreatedAt = updateCourse.CreatedAt;
                         rs.endDateAt=updateCourse.endDateAt;
+                        rs.Status = updateCourse.Status;
                         en.SaveChanges();
                         return "update success";
                     }

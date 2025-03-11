@@ -20,7 +20,7 @@ namespace OHD_System.Controllers.Admin
         {
             int totalRecords;
             UserRepository us = UserRepository.Instance;
-            List<UserView> users ;
+            List<UserView> users;
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 users = us.SearchProducts(searchTerm, page, pageSize, out totalRecords);
@@ -59,6 +59,68 @@ namespace OHD_System.Controllers.Admin
             UserRepository us = UserRepository.Instance;
             us.CreateUser(model);
             return Redirect("index");
+        }
+        public ActionResult EditUser()
+        {
+            if (!int.TryParse(Request.QueryString["id"], out int idUser) || idUser < 0)
+            {
+                if (TempData["idUser"] != null)
+                {
+                    idUser = (int)TempData["idUser"];
+                }
+                else
+                {
+                    return Redirect("Index");
+                }
+            }
+            TempData["idUser"] = idUser;
+            if (TempData["idUser"] != null)
+            {
+                RoleRepository role = RoleRepository.Instance;
+                ViewBag.listRole = role.getAllRole();
+                UserRepository us = UserRepository.Instance;
+                var item = us.getUserByID(idUser);
+                TempData["idUser"] = idUser;
+                if (TempData["m"] == null)
+                {
+                    ViewBag.UserEdit = item;
+                }
+                else
+                {
+                    ViewBag.UserEdit = TempData["m"];
+                }
+                return View();
+            }
+            return Redirect("index");
+        }
+        public ActionResult changeUser(User model)
+        {
+            if (Request.Form["Status"] == "on")
+            {
+                model.Status = 1;
+            }
+            else
+            {
+                model.Status = 0;
+            }
+            UserRepository us = UserRepository.Instance;
+            model.UserID = TempData["idUser"] != null ? (int)TempData["idUser"] : 0;
+            TempData["m"] = model;
+            TempData["idUser"] = model.UserID;
+            us.updateUser(model.UserID, model);
+            return Redirect("index");
+        }
+        public ActionResult deleteUser()
+        {
+            int idUser = -1;
+            int.TryParse(Request.QueryString["id"], out idUser);
+            if (idUser == -1)
+            {
+                return Redirect("Index");
+            }
+            UserRepository us = UserRepository.Instance;
+            us.DeleteUser(idUser);
+            return Redirect("Index");
         }
     }
 }

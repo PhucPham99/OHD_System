@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "NewUser";
+    ViewBag.Title = "NewCourse";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 @section subHeader{
 }
 <div class="page-heading">
-    <h1 class="page-title">New User</h1>
+    <h1 class="page-title">New Class</h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="row">
@@ -23,55 +24,43 @@
                     </div>
                 </div>
                 <div class="ibox-body">
-                    <form action="/user/createUser" method="post" enctype="multipart/form-data">
+                    <form action="/course/createcourse" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label>Full Name</label>
-                                <input class="form-control" type="text" name="FullName" placeholder="FullName" value="">
+                                <label>Course Name</label>
+                                <input class="form-control" type="text" name="CourseName" placeholder="CourseName" value="">
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Email</label>
-                                <input class="form-control" type="text" name="Email" placeholder="Email" value="">
+                                <label>Credits</label>
+                                <input class="form-control" type="text" name="Credits" placeholder="Credits" value="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label>PassWord</label>
-                                <input class="form-control" type="password" name="PasswordHash" placeholder="PassWord" value="">
+                                <label>Department</label>
+                                <input class="form-control" type="text" name="Department" placeholder="Department" value="">
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>PhoneNumber</label>
-                                <input class="form-control" type="text" name="PhoneNumber" placeholder="PhoneNumber" value="">
+                                <label>participants</label>
+                                <input class="form-control" type="text" name="participants" placeholder="participants" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" name="Description" placeholder="Description" rows="6"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label>Created Date</label>
+                                <label>CreatedAt</label>
                                 <input class="form-control" type="date" name="CreatedAt" value="">
                             </div>
                             <div class="col-sm-6 form-group">
-                                <label>Updated Date</label>
-                                <input class="form-control" type="date" name="UpdatedAt" value="">
+                                <label>endDateAt</label>
+                                <input class="form-control" type="date" name="endDateAt" value="">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Select Trainer</label>
-                                <select class="form-control" name="RoleID">
-                                    <option selected>select Type</option>
-                                    @if (ViewBag.listRole != null)
-                                    {
-                                        List<OHD_System.Models.Entities.Role> lsTrainer = (List<OHD_System.Models.Entities.Role>)ViewBag.listRole;
-                                        foreach (var item in lsTrainer)
-                                        {
-                                            <option value="@item.RoleID">@item.RoleName</option>
-                                        }
-                                    }
-                                </select>
-                                <span style="color: red;text-align:left">@(Session["RegexTrainer"]!=null?Session["RegexTrainer"]:"")</span>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="ui-checkbox">Status</label>
                             <input type="checkbox" name="Status" alt="Active or deactive" checked>
@@ -200,4 +189,6 @@
     </div>
 
 }
+
+
 
