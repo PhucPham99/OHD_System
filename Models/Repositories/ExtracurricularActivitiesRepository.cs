@@ -118,5 +118,26 @@ namespace OHD_System.Models.Repositories
             totalRecords = query.Count();
             return query.OrderBy(p => p.ActivityID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
+        public ExtracurricularActivity GetActivityByID(int id)
+        {
+            var ea = new ExtracurricularActivity();
+            try
+            {
+                using (var en = new Entities.OHD_SystemEntities())
+                {
+                    var rs=en.ExtracurricularActivities.Where(d=>d.ActivityID==id).FirstOrDefault();
+                    if (rs != null)
+                    {
+                        ea = rs;
+                        return ea;
+                    }
+                }
+            }
+            catch (EntityException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return ea;
+        }
     }
 }

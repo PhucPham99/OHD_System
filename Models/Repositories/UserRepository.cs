@@ -104,7 +104,8 @@ namespace OHD_System.Models.Repositories
             }
             return "update failed";
         }
-        public List<UserView> getAllProduct(int pageIndex, int pageSize, out int totalRecords)
+
+        public List<UserView> getAllUser(int pageIndex, int pageSize, out int totalRecords)
         {
             var en = new Entities.OHD_SystemEntities();
             totalRecords = en.Users.Count();
@@ -125,7 +126,7 @@ namespace OHD_System.Models.Repositories
                         UpdatedAt = u.UpdatedAt ?? DateTime.MinValue
                     }).OrderBy(p => p.UserID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
-        public List<UserView> SearchProducts(string searchTerm, int pageIndex, int pageSize, out int totalRecords)
+        public List<UserView> SearchUser(string searchTerm, int pageIndex, int pageSize, out int totalRecords)
         {
             var en = new Entities.OHD_SystemEntities();
             var query = (from u in en.Users
@@ -146,6 +147,27 @@ namespace OHD_System.Models.Repositories
                          }).ToList();
             totalRecords = query.Count();
             return query.OrderBy(p => p.UserID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        public List<User> checkUser(string param)
+        {
+            var ls = new List<User>();
+            try
+            {
+                using (var en = new Entities.OHD_SystemEntities())
+                {
+                    var rs = en.Users.Where(d => d.FullName.Equals(param)||d.PhoneNumber.Equals(param)||d.Email.Equals(param)).ToList();
+                    if (rs.Count() > 0)
+                    {
+                        ls = rs;
+                        return ls;
+                    }
+                }
+            }
+            catch (EntityException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return ls;
         }
         public User getUserByID(int id)
         {

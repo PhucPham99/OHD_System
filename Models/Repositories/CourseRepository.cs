@@ -95,6 +95,27 @@ namespace OHD_System.Models.Repositories
             totalRecords = en.Courses.Count();
             return en.Courses.OrderBy(p => p.CourseID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
+        public List<Cours> checkCourseName(string param)
+        {
+            var ls = new List<Cours>();
+            try
+            {
+                using(var en = new Entities.OHD_SystemEntities())
+                {
+                    var rs = en.Courses.Where(d=>d.CourseName.Equals(param)).ToList();
+                    if (rs.Count > 0)
+                    {
+                        ls=rs;
+                        return ls;
+                    }
+                }
+            }
+            catch (EntityException ex)
+            {
+                Debug.Write(ex.Message);
+            }
+            return ls;
+        }
         public List<Cours> SearchCourses(string searchTerm, int pageIndex, int pageSize, out int totalRecords)
         {
             var en = new Entities.OHD_SystemEntities();
@@ -103,6 +124,27 @@ namespace OHD_System.Models.Repositories
                                        p.Department.Contains(searchTerm)).ToList();
             totalRecords = query.Count();
             return query.OrderBy(p => p.CourseID).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        public Cours getCourseByID(int id)
+        {
+            var cor = new Cours();
+            try
+            {
+                using(var en =new Entities.OHD_SystemEntities())
+                {
+                    var rs = en.Courses.Where(d=>d.CourseID == id).FirstOrDefault();
+                    if (rs != null)
+                    {
+                        cor=rs;
+                        return cor;
+                    }
+                }
+            }
+            catch (EntityException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return cor;
         }
     }
 }

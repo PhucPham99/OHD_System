@@ -14,7 +14,7 @@
     </Key>
     <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseName" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Description" Type="text" />
     <Property Name="Credits" Type="int" Nullable="false" />
     <Property Name="Department" Type="nvarchar" MaxLength="255" />
     <Property Name="CreatedAt" Type="datetime" />

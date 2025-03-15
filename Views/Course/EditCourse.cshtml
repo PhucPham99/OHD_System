@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "EditCourse";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    OHD_System.Models.Entities.Cours m = ViewBag.CourseEdit as OHD_System.Models.Entities.Cours ?? new OHD_System.Models.Entities.Cours();
+}
+
+@section subHeader{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="page-heading text-center">
+        <h1 class="page-title">Edit Course</h1>
+    </div>
+    <div class="page-content fade-in-up d-flex justify-content-center align-items-center mt-4" style="min-height: 100vh;">
+        <div class="row w-100 d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="ibox">
+                    <div class="ibox-body" style="background-color: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); width: 100%;">
+                        <form action="/course/changecourse" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Course Name</label>
+                                    <input class="form-control" type="text" name="CourseName" placeholder="Course Name" value="@m.CourseName">
+                                    <span class="text-danger">@Session["RegexCourseName"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Credits</label>
+                                    <input class="form-control" type="text" name="Credits" placeholder="Credits" value="@m.Credits">
+                                    <span class="text-danger">@Session["RegexCredits"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Department</label>
+                                    <input class="form-control" type="text" name="Department" placeholder="Department" value="@m.Department">
+                                    <span class="text-danger">@Session["RegexDeparment"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Participants</label>
+                                    <input class="form-control" type="text" name="participants" placeholder="Participants" value="@m.participants">
+                                    <span class="text-danger">@Session["RegexParticipants"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="Description" id="Description" rows="6">@m.Description</textarea>
+                                    <span class="text-danger">@Session["RegexDescription"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Created At</label>
+                                    <input class="form-control" type="date" name="CreatedAt" value="@(m.CreatedAt != null ? ((DateTime)m.CreatedAt).ToString("yyyy-MM-dd") : "")">
+                                    <span class="text-danger">@Session["RegexCreatedAt"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>End Date</label>
+                                    <input class="form-control" type="date" name="endDateAt" value="@(m.endDateAt != null ? ((DateTime)m.endDateAt).ToString("yyyy-MM-dd") : "")">
+                                    <span class="text-danger">@Session["RegexEndDateAt"]</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="ui-checkbox">Status</label>
+                                <input type="checkbox" name="Status" alt="Active or Deactive" @(m.Status == 1 ? "checked" : "")>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- Kết thúc col-md-10 -->
+        </div>
+    </div>
+</div>
+
+@section subFooter{
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('Description', {
+                height: 300,
+                removePlugins: 'resize',
+                autoGrow_onStartup: true,
+                autoGrow_minHeight: 200,
+                autoGrow_maxHeight: 600
+            });
+        });
+    </script>
+}

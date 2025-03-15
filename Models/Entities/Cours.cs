@@ -11,7 +11,8 @@ namespace OHD_System.Models.Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Cours
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace OHD_System.Models.Entities
     
         public int CourseID { get; set; }
         public string CourseName { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public int Credits { get; set; }
         public string Department { get; set; }

@@ -1,194 +1,104 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "NewCourse";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    OHD_System.Models.Entities.Cours m = new OHD_System.Models.Entities.Cours();
 }
 
 @section subHeader{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 }
-<div class="page-heading">
-    <h1 class="page-title">New Class</h1>
-</div>
-<div class="page-content fade-in-up">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="ibox">
-                <div class="ibox-head">
-                    <div class="ibox-tools">
-                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item">option 1</a>
-                            <a class="dropdown-item">option 2</a>
-                        </div>
+@if (Session["m"] != null)
+{
+    m = (OHD_System.Models.Entities.Cours)Session["m"];
+}
+<div class="container-fluid">
+    <div class="page-heading text-center">
+        <h1 class="page-title">New Course</h1>
+    </div>
+    <div class="page-content fade-in-up d-flex justify-content-center align-items-center mt-4" style="min-height: 100vh;">
+        <div class="row w-100 d-flex justify-content-center">
+            <div class="col-md-10">
+                <!-- Tăng độ rộng từ 8 lên 10 -->
+                <div class="ibox">
+                    <div class="ibox-body" style="background-color: white; border-radius: 12px; padding: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); width: 100%;">
+                        <form action="/course/createcourse" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Course Name</label>
+                                    <input class="form-control" type="text" name="CourseName" placeholder="Course Name" value="@(m!=null?m.CourseName:"")">
+                                    <span class="text-danger">@Session["RegexCourseName"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Credits</label>
+                                    <input class="form-control" type="text" name="Credits" placeholder="Credits" value="@(m!=null?m.Credits:0)">
+                                    <span class="text-danger">@Session["RegexCredits"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Department</label>
+                                    <input class="form-control" type="text" name="Department" placeholder="Department" value="@(m!=null?m.Department:"")">
+                                    <span class="text-danger">@Session["RegexDeparment"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Participants</label>
+                                    <input class="form-control" type="text" name="participants" placeholder="Participants" value="@(m!=null?m.participants:0)">
+                                    <span class="text-danger">@Session["RegexParticipants"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="Description" placeholder="Description" id="Description" rows="6">@(m!=null?m.Description:"")</textarea>
+                                    <span class="text-danger">@Session["RegexDescription"]</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Created At</label>
+                                    <input class="form-control" type="date" name="CreatedAt" value="@(m.CreatedAt != null ? ( (DateTime)m.CreatedAt).ToString("yyyy-MM-dd"):"")">
+                                    <span class="text-danger">@Session["RegexCreatedAt"]</span>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>End Date</label>
+                                    <input class="form-control" type="date" name="endDateAt" value="@(m.endDateAt != null ? ( (DateTime)m.endDateAt).ToString("yyyy-MM-dd"):"")">
+                                    <span class="text-danger">@Session["RegexEndDateAt"]</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="ui-checkbox">Status</label>
+                                <input type="checkbox" name="Status" alt="Active or Deactive" @(m != null && m.Status == 1 ? "checked" : "")>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="ibox-body">
-                    <form action="/course/createcourse" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Course Name</label>
-                                <input class="form-control" type="text" name="CourseName" placeholder="CourseName" value="">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Credits</label>
-                                <input class="form-control" type="text" name="Credits" placeholder="Credits" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>Department</label>
-                                <input class="form-control" type="text" name="Department" placeholder="Department" value="">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>participants</label>
-                                <input class="form-control" type="text" name="participants" placeholder="participants" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" name="Description" placeholder="Description" rows="6"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label>CreatedAt</label>
-                                <input class="form-control" type="date" name="CreatedAt" value="">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>endDateAt</label>
-                                <input class="form-control" type="date" name="endDateAt" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="ui-checkbox">Status</label>
-                            <input type="checkbox" name="Status" alt="Active or deactive" checked>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-default" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            </div> <!-- Kết thúc col-md-10 -->
         </div>
     </div>
 </div>
+
+
 @section subFooter{
-    <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
-        <div class="theme-config-box">
-            <div class="text-center font-18 m-b-20">SETTINGS</div>
-            <div class="font-strong">LAYOUT OPTIONS</div>
-            <div class="check-list m-b-20 m-t-10">
-                <label class="ui-checkbox ui-checkbox-gray">
-                    <input id="_fixedNavbar" type="checkbox" checked>
-                    <span style="color: red;text-align:left" class="input-span"></span>Fixed navbar
-                </label>
-                <label class="ui-checkbox ui-checkbox-gray">
-                    <input id="_fixedlayout" type="checkbox">
-                    <span style="color: red;text-align:left" class="input-span"></span>Fixed layout
-                </label>
-                <label class="ui-checkbox ui-checkbox-gray">
-                    <input class="js-sidebar-toggler" type="checkbox">
-                    <span style="color: red;text-align:left" class="input-span"></span>Collapse sidebar
-                </label>
-            </div>
-            <div class="font-strong">LAYOUT STYLE</div>
-            <div class="m-t-10">
-                <label class="ui-radio ui-radio-gray m-r-10">
-                    <input type="radio" name="layout-style" value="" checked="">
-                    <span style="color: red;text-align:left" class="input-span"></span>Fluid
-                </label>
-                <label class="ui-radio ui-radio-gray">
-                    <input type="radio" name="layout-style" value="1">
-                    <span style="color: red;text-align:left" class="input-span"></span>Boxed
-                </label>
-            </div>
-            <div class="m-t-10 m-b-10 font-strong">THEME COLORS</div>
-            <div class="d-flex m-b-20">
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Default">
-                    <label>
-                        <input type="radio" name="setting-theme" value="default" checked="">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-
-
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Blue">
-                    <label>
-                        <input type="radio" name="setting-theme" value="blue">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Green">
-                    <label>
-                        <input type="radio" name="setting-theme" value="green">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Purple">
-                    <label>
-                        <input type="radio" name="setting-theme" value="purple">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Orange">
-                    <label>
-                        <input type="radio" name="setting-theme" value="orange">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Pink">
-                    <label>
-                        <input type="radio" name="setting-theme" value="pink">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-            </div>
-            <div class="d-flex">
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="White">
-                    <label>
-                        <input type="radio" name="setting-theme" value="white">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Blue light">
-                    <label>
-                        <input type="radio" name="setting-theme" value="blue-light">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Green light">
-                    <label>
-                        <input type="radio" name="setting-theme" value="green-light">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Purple light">
-                    <label>
-                        <input type="radio" name="setting-theme" value="purple-light">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Orange light">
-                    <label>
-                        <input type="radio" name="setting-theme" value="orange-light">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-                <div class="color-skin-box" data-toggle="tooltip" data-original-title="Pink light">
-                    <label>
-                        <input type="radio" name="setting-theme" value="pink-light">
-                        <span style="color: red;text-align:left" class="color-check-icon"><i class="fa fa-check"></i></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('Description', {
+                height: 300,
+                removePlugins: 'resize',
+                autoGrow_onStartup: true,
+                autoGrow_minHeight: 200,
+                autoGrow_maxHeight: 600
+            });
+        });
+    </script>
 
 }
-
 
 
